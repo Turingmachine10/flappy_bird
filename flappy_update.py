@@ -82,10 +82,10 @@ def pipe_score_check():
 pygame.init()
 screen = pygame.display.set_mode((576,1024))
 clock = pygame.time.Clock()
-game_font = pygame.font.Font('04B_19.ttf',40)
+game_font = pygame.font.Font('04B_19.TTF',40)
 
 # Game Variables
-gravity = 0.25
+gravity = 0.08
 bird_movement = 0
 game_active = True
 score = 0
@@ -118,7 +118,7 @@ pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE,1200)
-pipe_height = [400,600,800]
+pipe_height = [400,600,500]
 
 game_over_surface = pygame.transform.scale2x(pygame.image.load('assets/message.png').convert_alpha())
 game_over_rect = game_over_surface.get_rect(center = (288,512))
@@ -135,12 +135,12 @@ while True:
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_SPACE and game_active:
+		if event.type == pygame.KEYDOWN: #arduino.blink
+			if event.key == pygame.K_SPACE and game_active: #arduino.blink
 				bird_movement = 0
-				bird_movement -= 12
+				bird_movement -= 6
 				flap_sound.play()
-			if event.key == pygame.K_SPACE and game_active == False:
+			if event.key == pygame.K_SPACE and game_active == False: #arduino.blink
 				game_active = True
 				pipe_list.clear()
 				bird_rect.center = (100,512)
